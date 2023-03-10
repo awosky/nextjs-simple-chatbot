@@ -6,6 +6,7 @@ export interface Message {
 export interface MessageContext {
   messages: Message[] | [];
   isTyping: boolean;
+  isLoading: boolean;
   submitMessage: (message: string) => void;
   resetMessage: () => void;
 }

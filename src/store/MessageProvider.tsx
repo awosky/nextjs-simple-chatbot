@@ -13,6 +13,7 @@ import { clearMessages, getMessages, saveMessages } from "@/utils/localStorage";
 export const MessageContext = createContext<IMessageContext>({
   messages: [],
   isTyping: false,
+  isLoading: false,
   submitMessage: () => null,
   resetMessage: () => null,
 });
@@ -20,6 +21,7 @@ export const MessageContext = createContext<IMessageContext>({
 const MessageProvider = ({ children }: { children: JSX.Element }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setMessages(getMessages());
@@ -29,6 +31,14 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
     const isResponded = messages.length % 2 === 0;
     if (isResponded && isTyping) setIsTyping(false);
   }, [isTyping, messages]);
+
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   const updateMessage = (newMessages: Message[]) => {
     setMessages(newMessages);
@@ -53,8 +63,8 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   const value = useMemo(
-    () => ({ messages, isTyping, submitMessage, resetMessage }),
-    [isTyping, messages, submitMessage]
+    () => ({ messages, isTyping, isLoading, submitMessage, resetMessage }),
+    [isLoading, isTyping, messages, submitMessage]
   );
 
   return (
