@@ -4,13 +4,18 @@ import {
   MoreOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, MenuProps } from "antd";
-import { useContext } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 
 import { MessageContext } from "@/store/MessageProvider";
 
 import style from "./DropdownMenu.module.scss";
 
-const DropdownMenu = () => {
+interface Props {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const DropdownMenu = (props: Props) => {
+  const { setOpen } = props;
   const { resetMessage } = useContext(MessageContext);
 
   const items: MenuProps["items"] = [
@@ -18,6 +23,7 @@ const DropdownMenu = () => {
       key: "1",
       label: "Info Chatbot",
       icon: <InfoCircleOutlined />,
+      onClick: () => setOpen(true),
     },
     {
       type: "divider",

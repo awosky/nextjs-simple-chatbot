@@ -1,23 +1,27 @@
-import { Col, Row, Space, Typography } from "antd";
+import { Button, Col, Row, Space, Typography } from "antd";
 import Image from "next/image";
+import { useState } from "react";
 
 import DropdownMenu from "@/components/DropdownMenu";
 
+import ModalInfo from "./ModalInfo";
 import style from "./Navbar.module.scss";
 
 const Navbar = () => {
+  const [open, setOpen] = useState<boolean>(false);
+
   return (
     <div className={style.navbar}>
       <Row justify="space-between" align="middle" wrap={false}>
         <Col>
           <Space size={12}>
-            <Image
+            <Button
+              type="text"
               className={style.logo}
-              src="/images/logo.png"
-              width={48}
-              height={48}
-              alt="Logo"
-            />
+              onClick={() => setOpen(!open)}
+            >
+              <Image src="/images/logo.png" width={48} height={48} alt="Logo" />
+            </Button>
             <div className={style.text}>
               <Typography.Title level={1} className={style.title}>
                 Simple Chatbot
@@ -29,9 +33,10 @@ const Navbar = () => {
           </Space>
         </Col>
         <Col>
-          <DropdownMenu />
+          <DropdownMenu setOpen={setOpen} />
         </Col>
       </Row>
+      <ModalInfo open={open} setOpen={setOpen} />
     </div>
   );
 };

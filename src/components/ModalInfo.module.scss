@@ -1,0 +1,19 @@
+.modal-info {
+  padding-top: 24px;
+  text-align: justify;
+
+  .logo {
+    text-align: center;
+    margin-bottom: 24px;
+
+    img {
+      margin: auto;
+      border-radius: 100px;
+    }
+  }
+
+  .text {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+}
