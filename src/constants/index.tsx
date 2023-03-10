@@ -4,5 +4,6 @@ export const META = {
 };
 
 export const INFO = {
+  INTRODUCTON: `Hello there! \nFeel free to ask me anything and I will do my best to provide you with the most accurate and relevant responses. \nLet's get started!`,
   DESCRIPTION: `Simple Chatbot is a simple project that utilizes OpenAI, designed to pique people's interest in artificial intelligence. It is a user-friendly chatbot that can answer simple questions and engage in basic conversations. Its purpose is to demonstrate the capabilities and potential of AI in a fun and interactive way. Users can interact with Simple Chatbot and learn more about AI technology through its responses. Overall, Simple Chatbot is a simple yet effective tool for introducing people to the world of AI.`,
 };
