@@ -8,7 +8,7 @@ import Empty from "./Empty";
 import style from "./MessageContainer.module.scss";
 
 const MessageContainer = () => {
-  const { messages, loading } = useContext(MessageContext);
+  const { messages, isTyping } = useContext(MessageContext);
   const focusRef = useRef<HTMLDivElement>(null);
   const isEmpty = messages.length <= 0;
 
@@ -40,7 +40,7 @@ const MessageContainer = () => {
           );
         })}
 
-        {loading && (
+        {isTyping && (
           <div className={style["server"]}>
             <Loading />
           </div>
