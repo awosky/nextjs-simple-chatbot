@@ -1,0 +1,35 @@
+.input-message {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 40px;
+  max-width: 768px;
+  z-index: 10;
+
+  .wrapper {
+    margin: 16px 8px;
+
+    .input {
+      background: #fff;
+      border-color: #fff;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 14px;
+
+      &:empty:not(:focus):before {
+        content: attr(data-ph);
+        color: grey;
+      }
+
+      &:focus {
+        outline: 0px solid transparent;
+      }
+    }
+
+    .button {
+      color: #fff;
+      background: #128c7e;
+      margin-left: 12px;
+    }
+  }
+}
