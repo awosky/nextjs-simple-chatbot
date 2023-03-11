@@ -77,6 +77,7 @@ export default function Document() {
           name="msapplication-TileImage"
           content="/assets/ms-icon-144x144.png"
         />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="theme-color" content="#128c7e" />
       </Head>
