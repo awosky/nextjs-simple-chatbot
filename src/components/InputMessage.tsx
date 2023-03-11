@@ -17,7 +17,7 @@ const InputMessage = () => {
     if (isMobile && isVisible) {
       setTimeout(
         () => lastMessageRef.current?.scrollIntoView({ behavior: "smooth" }),
-        100
+        500
       );
     }
   };
