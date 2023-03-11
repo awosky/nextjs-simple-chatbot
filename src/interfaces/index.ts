@@ -1,3 +1,5 @@
+import { RefObject } from "react";
+
 export interface Message {
   type: "user" | "server";
   message: string;
@@ -9,4 +11,5 @@ export interface MessageContext {
   isLoading: boolean;
   submitMessage: (message: string) => void;
   resetMessage: () => void;
+  lastMessageRef: RefObject<HTMLDivElement>;
 }

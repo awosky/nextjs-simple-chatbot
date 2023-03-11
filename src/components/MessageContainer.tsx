@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import { Fragment, useContext, useEffect, useRef } from "react";
 
 import Loading from "@/components/Loading";
 import { Message } from "@/interfaces";
@@ -8,7 +8,7 @@ import Empty from "./Empty";
 import style from "./MessageContainer.module.scss";
 
 const MessageContainer = () => {
-  const { messages, isTyping } = useContext(MessageContext);
+  const { messages, isTyping, lastMessageRef } = useContext(MessageContext);
   const focusRef = useRef<HTMLDivElement>(null);
   const isEmpty = messages.length <= 0;
 
@@ -30,13 +30,13 @@ const MessageContainer = () => {
           const isUserMessage = messageSize % 2 !== 0;
           const showFocus = isUserMessage ? isLastMessage : isSecondLastMessage;
           return (
-            <React.Fragment key={i}>
+            <Fragment key={i}>
               {messageSize > 2 && showFocus && <span ref={focusRef} />}
               <div
                 className={style[v.type]}
                 dangerouslySetInnerHTML={{ __html: v.message.trim() }}
               />
-            </React.Fragment>
+            </Fragment>
           );
         })}
 
@@ -45,6 +45,8 @@ const MessageContainer = () => {
             <Loading />
           </div>
         )}
+
+        <span ref={lastMessageRef} />
       </div>
     </div>
   );

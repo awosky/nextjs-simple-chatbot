@@ -1,8 +1,10 @@
 import {
   createContext,
+  createRef,
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -16,9 +18,11 @@ export const MessageContext = createContext<IMessageContext>({
   isLoading: false,
   submitMessage: () => null,
   resetMessage: () => null,
+  lastMessageRef: createRef<HTMLDivElement>(),
 });
 
 const MessageProvider = ({ children }: { children: JSX.Element }) => {
+  const lastMessageRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -63,7 +67,14 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   const value = useMemo(
-    () => ({ messages, isTyping, isLoading, submitMessage, resetMessage }),
+    () => ({
+      messages,
+      isTyping,
+      isLoading,
+      submitMessage,
+      resetMessage,
+      lastMessageRef,
+    }),
     [isLoading, isTyping, messages, submitMessage]
   );
 

@@ -7,8 +7,12 @@ import { MessageContext } from "@/store/MessageProvider";
 import style from "./InputMessage.module.scss";
 
 const InputMessage = () => {
-  const { submitMessage } = useContext(MessageContext);
+  const { submitMessage, lastMessageRef } = useContext(MessageContext);
   const inputRef = useRef<HTMLDivElement>(null);
+
+  const onFocus = () => {
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "Enter") {
@@ -40,6 +44,7 @@ const InputMessage = () => {
             contentEditable="true"
             data-ph="Message"
             onKeyDown={(e) => onKeyDown(e)}
+            onFocus={() => onFocus()}
           ></div>
         </Col>
         <Col>
