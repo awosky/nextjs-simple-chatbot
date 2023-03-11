@@ -4,19 +4,22 @@ import { useContext, useRef } from "react";
 import { isMobile } from "react-device-detect";
 
 import { MessageContext } from "@/store/MessageProvider";
+import useOnScreen from "@/utils/useOnScreen";
 
 import style from "./InputMessage.module.scss";
 
 const InputMessage = () => {
   const { submitMessage, lastMessageRef } = useContext(MessageContext);
   const inputRef = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(lastMessageRef);
 
   const onFocus = () => {
-    const timeout = isMobile ? 500 : 0;
-    setTimeout(
-      () => lastMessageRef.current?.scrollIntoView({ behavior: "smooth" }),
-      timeout
-    );
+    if (isMobile && isVisible) {
+      setTimeout(
+        () => lastMessageRef.current?.scrollIntoView({ behavior: "smooth" }),
+        100
+      );
+    }
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
