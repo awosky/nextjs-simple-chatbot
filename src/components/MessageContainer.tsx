@@ -31,7 +31,7 @@ const MessageContainer = () => {
           const showFocus = isUserMessage ? isLastMessage : isSecondLastMessage;
           return (
             <React.Fragment key={i}>
-              {showFocus && <span ref={focusRef} />}
+              {messageSize > 2 && showFocus && <span ref={focusRef} />}
               <div
                 className={style[v.type]}
                 dangerouslySetInnerHTML={{ __html: v.message.trim() }}

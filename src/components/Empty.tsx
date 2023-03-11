@@ -13,7 +13,7 @@ const Empty = () => {
   return (
     <div className={style.empty}>
       <div>
-        <Image src="/images/empty.svg" width={200} height={120} alt="empty" />
+        <Image src="/images/empty.svg" width={200} height={100} alt="empty" />
         <Card className={style.card}>
           <Typography.Paragraph className={style.text}>
             {INFO.INTRODUCTON}
