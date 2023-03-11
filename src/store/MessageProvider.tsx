@@ -49,10 +49,18 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
     async (message: string) => {
       const newMessages: Message[] = [...messages, { type: "user", message }];
       updateMessage(newMessages);
-      setTimeout(() => setIsTyping(true), 800);
-      const res = await getResponse(message);
-      updateMessage([...newMessages, { type: "server", message: res.result }]);
-      setIsTyping(false);
+      try {
+        setTimeout(() => setIsTyping(true), 800);
+        const res = await getResponse(message);
+        updateMessage([
+          ...newMessages,
+          { type: "server", message: res.result },
+        ]);
+      } catch (error) {
+        updateMessage([...newMessages, { type: "server", message: "😿" }]);
+      } finally {
+        setIsTyping(false);
+      }
     },
     [messages]
   );
