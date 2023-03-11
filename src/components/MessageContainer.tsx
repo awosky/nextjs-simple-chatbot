@@ -34,7 +34,7 @@ const MessageContainer = () => {
               {messageSize > 2 && showFocus && <span ref={focusRef} />}
               <div
                 className={style[v.role]}
-                dangerouslySetInnerHTML={{ __html: v.content.trim() }}
+                dangerouslySetInnerHTML={{ __html: v.content?.trim() }}
               />
             </Fragment>
           );
