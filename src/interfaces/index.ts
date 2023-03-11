@@ -1,8 +1,8 @@
 import { RefObject } from "react";
 
 export interface Message {
-  type: "user" | "server";
-  message: string;
+  role: "user" | "assistant";
+  content: string;
 }
 
 export interface MessageContext {

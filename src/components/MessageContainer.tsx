@@ -33,15 +33,15 @@ const MessageContainer = () => {
             <Fragment key={i}>
               {messageSize > 2 && showFocus && <span ref={focusRef} />}
               <div
-                className={style[v.type]}
-                dangerouslySetInnerHTML={{ __html: v.message.trim() }}
+                className={style[v.role]}
+                dangerouslySetInnerHTML={{ __html: v.content.trim() }}
               />
             </Fragment>
           );
         })}
 
         {isTyping && (
-          <div className={style["server"]}>
+          <div className={style["assistant"]}>
             <Loading />
           </div>
         )}

@@ -47,17 +47,20 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
 
   const submitMessage = useCallback(
     async (message: string) => {
-      const newMessages: Message[] = [...messages, { type: "user", message }];
+      const newMessages: Message[] = [
+        ...messages,
+        { role: "user", content: message },
+      ];
       updateMessage(newMessages);
       try {
         setTimeout(() => setIsTyping(true), 800);
-        const res = await getResponse(message);
+        const res = await getResponse(newMessages);
         updateMessage([
           ...newMessages,
-          { type: "server", message: res.result },
+          { role: "assistant", content: res.result },
         ]);
       } catch (error) {
-        updateMessage([...newMessages, { type: "server", message: "😿" }]);
+        updateMessage([...newMessages, { role: "assistant", content: "😿" }]);
       } finally {
         setIsTyping(false);
       }
