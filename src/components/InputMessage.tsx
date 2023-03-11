@@ -1,6 +1,7 @@
 import { SendOutlined } from "@ant-design/icons";
 import { Button, Col, Row } from "antd";
 import { useContext, useRef } from "react";
+import { isMobile } from "react-device-detect";
 
 import { MessageContext } from "@/store/MessageProvider";
 
@@ -11,9 +12,10 @@ const InputMessage = () => {
   const inputRef = useRef<HTMLDivElement>(null);
 
   const onFocus = () => {
+    const timeout = isMobile ? 500 : 0;
     setTimeout(
       () => lastMessageRef.current?.scrollIntoView({ behavior: "smooth" }),
-      1000
+      timeout
     );
   };
 
