@@ -11,7 +11,10 @@ const InputMessage = () => {
   const inputRef = useRef<HTMLDivElement>(null);
 
   const onFocus = () => {
-    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(
+      () => lastMessageRef.current?.scrollIntoView({ behavior: "smooth" }),
+      1000
+    );
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {

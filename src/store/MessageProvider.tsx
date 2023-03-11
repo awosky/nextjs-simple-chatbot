@@ -37,10 +37,6 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
   }, [isTyping, messages]);
 
   useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
-
-  useEffect(() => {
     setIsLoading(false);
   }, []);
 
