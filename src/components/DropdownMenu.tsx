@@ -41,6 +41,7 @@ const DropdownMenu = (props: Props) => {
       overlayClassName={style.dropdown}
       menu={{ items }}
       placement="bottomRight"
+      trigger={["click"]}
       arrow
     >
       <Button className={style.menu} type="text" icon={<MoreOutlined />} />
