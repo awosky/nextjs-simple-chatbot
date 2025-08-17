@@ -21,7 +21,6 @@ export const getResponse = async (messages: Message[]) => {
     }
     return data.text;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };
