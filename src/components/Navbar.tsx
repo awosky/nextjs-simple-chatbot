@@ -27,7 +27,7 @@ const Navbar = () => {
                 Simple Chatbot
               </Typography.Title>
               <Typography.Paragraph className={style.description}>
-                Powered by OpenAI
+                Powered by Google AI
               </Typography.Paragraph>
             </div>
           </Space>
