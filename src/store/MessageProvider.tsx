@@ -9,7 +9,7 @@ import {
 } from "react";
 
 import { Message, MessageContext as IMessageContext } from "@/interfaces";
-import { getResponse } from "@/services/openApi";
+import { getResponse } from "@/services/geminiAI";
 import { clearMessages, getMessages, saveMessages } from "@/utils/localStorage";
 
 export const MessageContext = createContext<IMessageContext>({
@@ -55,10 +55,7 @@ const MessageProvider = ({ children }: { children: JSX.Element }) => {
       try {
         setTimeout(() => setIsTyping(true), 800);
         const res = await getResponse(newMessages);
-        updateMessage([
-          ...newMessages,
-          { role: "assistant", content: res.result },
-        ]);
+        updateMessage([...newMessages, { role: "assistant", content: res }]);
       } catch (error) {
         updateMessage([...newMessages, { role: "assistant", content: "😿" }]);
       } finally {

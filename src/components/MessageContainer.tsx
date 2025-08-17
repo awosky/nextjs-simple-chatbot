@@ -1,4 +1,5 @@
 import { Fragment, useContext, useEffect, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 
 import Loading from "@/components/Loading";
 import { Message } from "@/interfaces";
@@ -32,10 +33,9 @@ const MessageContainer = () => {
           return (
             <Fragment key={i}>
               {messageSize > 2 && showFocus && <span ref={focusRef} />}
-              <div
-                className={style[v.role]}
-                dangerouslySetInnerHTML={{ __html: v.content?.trim() }}
-              />
+              <div className={style[v.role]}>
+                <ReactMarkdown>{v.content?.trim() || ""}</ReactMarkdown>
+              </div>
             </Fragment>
           );
         })}

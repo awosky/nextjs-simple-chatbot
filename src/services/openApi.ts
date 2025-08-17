@@ -2,7 +2,7 @@ import { Message } from "@/interfaces";
 
 export const getResponse = async (messages: Message[]) => {
   try {
-    const response = await fetch("/api/generate", {
+    const response = await fetch("/api/openAI/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
